@@ -84,7 +84,9 @@ def read_emmission_records(request):
             row_units = row["Spend units"].lower()
             row_value = row["Spend"]
         else:
-            print("Unknown Activity record received, activity : %s" % (row_activity,))  # This would normally be a log
+            print(
+                "Unknown Activity record received, activity : %s" % (row_activity,)
+            )  # This would normally be a log
             success = False
             continue
 
@@ -104,7 +106,9 @@ def read_emmission_records(request):
         if row_units != emmission_factor.unit:
             conversion_string = row_units + "-" + emmission_factor.unit
             if conversion_string not in TYPE_CONVERSIONS_DICT:
-                print("Unknown unit received, cannot convert, unit : %s" % (row_units,))  # This would normally be a log
+                print(
+                    "Unknown unit received, cannot convert, unit : %s" % (row_units,)
+                )  # This would normally be a log
                 success = False
                 continue
             final_value = TYPE_CONVERSIONS_DICT[conversion_string] * row_value

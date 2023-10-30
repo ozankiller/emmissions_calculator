@@ -1,7 +1,12 @@
 from typing import List, Optional, Union
 from django.db.models import Sum
 from calculator import models
-from calculator.types import ClientEmmission, Emmission, EmmissionFactor, GroupedEmmission
+from calculator.types import (
+    ClientEmmission,
+    Emmission,
+    EmmissionFactor,
+    GroupedEmmission,
+)
 
 
 def register_carbon_emmission_factor(emmission_factor: EmmissionFactor) -> bool:
@@ -112,7 +117,8 @@ def get_carbon_emmissions(
         return list(grouped_values)
 
     return [
-        convert_db_emmission_to_client_dict(db_emmission) for db_emmission in final_emmissions_list
+        convert_db_emmission_to_client_dict(db_emmission)
+        for db_emmission in final_emmissions_list
     ]
 
 
@@ -134,7 +140,9 @@ def convert_db_emmission_factor(
     )
 
 
-def convert_db_emmission_to_client_dict(db_emmission: models.Emmission) -> ClientEmmission:
+def convert_db_emmission_to_client_dict(
+    db_emmission: models.Emmission,
+) -> ClientEmmission:
     return ClientEmmission(
         activity=db_emmission.activity,
         co2e=db_emmission.co2e,
